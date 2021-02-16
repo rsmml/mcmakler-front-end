@@ -7,7 +7,9 @@
       <div class="col-12 col-lg-5 banner-info">
         <h1>Find your home today with McMakler </h1>
         <p class="subtitle">Search homes and keep track of the ones you like. View our exclusive listings.</p>
-        <button class="btn btn-outline-secondary">Add a Property</button>
+        <router-link to="/add" style="font-size: 25px !important">
+          <button class="btn btn-outline-secondary">Add a Property</button>
+        </router-link>
       </div>
     </div>
     <div class="d-flex justify-content-center search-100">

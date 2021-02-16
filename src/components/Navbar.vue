@@ -27,9 +27,16 @@
                 </li>
               </router-link>
             </div>
-            <router-link to="/add" class="nav-link" v-if="loggedIn()">
-              <li class="nav-item btn-yellow">Add Appartment</li>
-            </router-link>
+
+            <li><router-link  active-class="active"
+              :to="{ name: 'add' }"
+              v-if="loggedIn()">
+              <a href="#" class="nav-link">Add Apartment</a>
+            </router-link></li>
+
+            <!-- <router-link :to="{ name: 'add' }" class="nav-link" v-if="loggedIn()">
+              <li class="nav-item btn-yellow"><a href="#" class="nav-link">Add Apartment</a></li>
+            </router-link> -->
           </ul>
         </div>
         <!-- RIGHT -->

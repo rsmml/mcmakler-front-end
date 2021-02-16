@@ -28,6 +28,8 @@ export default new Router({
       get component () {
         if (localStorage.signedIn) {
           return Add
+        } else {
+          return SignIn
         }
       }
     },
