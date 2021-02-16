@@ -6,6 +6,8 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFontAwesome, faTwitterSquare, faFacebookSquare, faInstagramSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faSearch, faChevronRight, faBurn, faTimes, faHeart, faStar, faMapMarkerAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
 
@@ -30,6 +32,12 @@ library.add(
   faShoppingBag
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+//  Vue Axios
+Vue.use(VueAxios, axios)
+
+// Bus
+export const bus = new Vue()
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)

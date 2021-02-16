@@ -25,8 +25,60 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { bus } from '../main'
+
 export default {
-  name: 'SignIn'
+  name: 'SignIn',
+  data () {
+    return {
+      email: '',
+      password: '',
+      error: ''
+    }
+  },
+  created () {
+    this.checkSignedIn()
+  },
+  updated () {
+    this.checkSignedIn()
+  },
+  methods: {
+    signin () {
+      axios.post('http://localhost:3000/sessions', {
+        user: {
+          email: this.email,
+          password: this.password
+        }
+      },
+      { withCredentials: true }
+      )
+        .then(response => this.signinSuccesful(response))
+        .catch(error => this.signinFailed(error))
+    },
+    signinSuccesful (response) {
+      if (!response.data) {
+        this.signinFailed(response)
+      }
+      localStorage.setItem('sessionId', response.data['session'].session_id)
+      localStorage.setItem('signedIn', response.data.logged_in)
+      localStorage.setItem('userId', response.data['session'].user_id)
+      this.error = ''
+      bus.$emit('refresh', 1)
+      this.$router.replace('/')
+    },
+    signinFailed (error) {
+      this.error = (error.response && error.response.data && error.response.data.error) || ''
+      delete localStorage.sessionId
+      delete localStorage.signedIn
+      delete localStorage.userId
+    },
+    checkSignedIn () {
+      if (localStorage.signedIn) {
+        this.$router.replace('/')
+      }
+    }
+  }
 }
 </script>
 

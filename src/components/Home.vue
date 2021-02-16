@@ -1,6 +1,8 @@
 <template>
   <div id="home">
-    Home
+    <div style="height: 80vh">
+      Home
+    </div>
   </div>
 </template>
 
