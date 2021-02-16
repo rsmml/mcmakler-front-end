@@ -1,11 +1,11 @@
 <template>
-  <div id="signin" class="wrapper fadeInDown">
-    <div id="formContent">
+  <div id="signin" class="wrapper fadeInDown row">
+    <div id="formContent" class="col-8 col-lg-4">
       <!-- Tabs Titles -->
 
       <!-- Icon -->
-      <div class="fadeIn first">
-        <img src="" id="icon" alt="Logo" />
+      <div class="fadeIn first p-3">
+        <img src="../assets/logo.png" id="icon" alt="Logo" style="height: 100px; width: 100px;" />
       </div>
 
       <!-- Login Form -->
@@ -109,9 +109,10 @@ export default {
   /* FORM TYPOGRAPHY*/
 
   input[type=button], input[type=submit], input[type=reset]  {
-    background-color: #56baed;
+    background-color: #ffe300;
     border: none;
-    color: white;
+    color: #094951;
+    font-weight: bolder;
     padding: 15px 80px;
     text-align: center;
     text-decoration: none;
@@ -131,7 +132,7 @@ export default {
   }
 
   input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
+    background-color: #dbc407;
   }
 
   input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
@@ -165,7 +166,7 @@ export default {
 
   input[type=text]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #ffe300;
   }
 
   input[type=text]:placeholder {
@@ -194,7 +195,7 @@ export default {
 
   input[type=password]:focus {
     background-color: #fff;
-    border-bottom: 2px solid #5fbae9;
+    border-bottom: 2px solid #ffe300;
   }
 
   input[type=password]:placeholder {
@@ -304,7 +305,7 @@ export default {
   /* OTHERS */
 
   *:focus {
-      outline: none;
+    outline: none;
   }
 
   #icon {
