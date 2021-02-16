@@ -1,7 +1,7 @@
 <template>
   <div id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
-      <div class="w-100 d-flex justify-content-center mt-4">
+      <div class="w-100 d-flex justify-content-center mt-2">
         <!-- LEFT -->
         <h1>McMackler</h1>
         <!-- CENTER -->
