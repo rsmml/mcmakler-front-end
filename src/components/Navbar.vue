@@ -27,7 +27,7 @@
                 </li>
               </router-link>
             </div>
-            <router-link to="/newappartment" class="nav-link" v-if="loggedIn()">
+            <router-link to="/add" class="nav-link" v-if="loggedIn()">
               <li class="nav-item btn-yellow">Add Appartment</li>
             </router-link>
           </ul>

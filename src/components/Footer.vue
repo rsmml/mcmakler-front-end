@@ -64,6 +64,10 @@ export default {
 <style scoped>
 #footer {
   background-color: #004b55;
+  /*position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: max-content;*/
 }
 h1{
   font-size: 18px;
