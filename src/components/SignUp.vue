@@ -7,7 +7,7 @@
       </div>
 
       <!-- Login Form -->
-      <form @submit.prevent="signin">
+      <form @submit.prevent="signup">
         <!-- eslint-disable-next-line -->
         <input v-model="email" type="text" id="login" class="fadeIn second" name="login" placeholder="E-mail">
         <!-- eslint-disable-next-line -->
@@ -26,8 +26,63 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { bus } from '../main'
+
 export default {
-  name: 'SignUp'
+  name: 'SignUp',
+  data () {
+    return {
+      email: '',
+      password: '',
+      password_confirmation: '',
+      error: ''
+    }
+  },
+  created () {
+    this.checkSignedIn()
+    // console.log(localStorage.signedIn)
+  },
+  updated () {
+    this.checkSignedIn()
+  },
+  methods: {
+    signup () {
+      axios.post('http://localhost:3000/registrations', {
+        user: {
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation
+        }
+      },
+      { withCredentials: true }
+      )
+        .then(response => this.signupSuccesful(response))
+        .catch(error => this.signupFailed(error))
+    },
+    signupSuccesful (response) {
+      if (!response.data) {
+        this.signunFailed(response)
+      }
+      localStorage.setItem('sessionId', response.data['session'].session_id)
+      localStorage.setItem('signedIn', response.data.logged_in)
+      localStorage.setItem('userId', response.data['session'].user_id)
+      this.error = ''
+      bus.$emit('refresh', 1)
+      this.$router.replace('/')
+    },
+    signupFailed (error) {
+      this.error = (error.response && error.response.data && error.response.data.error) || ''
+      delete localStorage.sessionId
+      delete localStorage.signedIn
+      delete localStorage.userId
+    },
+    checkSignedIn () {
+      if (localStorage.signedIn) {
+        this.$router.replace('/')
+      }
+    }
+  }
 }
 </script>
 
