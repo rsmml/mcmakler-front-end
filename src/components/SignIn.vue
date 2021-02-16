@@ -1,9 +1,7 @@
 <template>
-  <div id="signin" class="wrapper fadeInDown row">
-    <div id="formContent" class="col-8 col-lg-4">
-      <!-- Tabs Titles -->
-
-      <!-- Icon -->
+  <div id="signin" class="wrapper fadeInDown w-100">
+    <div id="formContent">
+      <!-- Logo -->
       <div class="fadeIn first p-3">
         <img src="../assets/logo.png" id="icon" alt="Logo" style="height: 100px; width: 100px;" />
       </div>
@@ -17,7 +15,7 @@
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
 
-      <!-- Remind Passowrd -->
+      <!-- Remind Passoword -->
       <div id="formFooter" class="d-flex flex-column">
         <router-link to="/" class="hover-dark-blue">Forgot Password?</router-link>
         <router-link to="/signup" class="hover-dark-blue mt-2">New Here?</router-link>
@@ -77,7 +75,7 @@ export default {
     border-radius: 10px 10px 10px 10px;
     background: #fff;
     padding: 30px;
-    width: 100vw;
+    width: 95%;
     max-width: 450px;
     position: relative;
     padding: 0px;
