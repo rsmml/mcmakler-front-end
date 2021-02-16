@@ -44,7 +44,7 @@
     <div class="bottom-footer container">
       <div class="row">
         <div class="col-12 col-lg-12 d-flex mt-3">
-          <font-awesome-icon icon="map-marker-alt" style="color:white; font-size: 12px;"/>
+          <font-awesome-icon icon="map-marker-alt" style="color:#ffe300; font-size: 12px;"/>
           <p>Berlin, Deutschland</p>
           <p class="flex-grow-1">© 2021 McMakler Gmbh - Le Wagon Gmbh - Get Me Hired Event. All Rights Reserved</p>
           <router-link to="/" style="font-size: 12px !important">Impressum</router-link>
@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 #footer {
-  background-color: #2c3e52;
+  background-color: #004b55;
 }
 h1{
   font-size: 18px;
