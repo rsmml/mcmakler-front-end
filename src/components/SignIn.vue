@@ -26,6 +26,7 @@
 
 <script>
 import axios from 'axios'
+import { bus } from '../main'
 
 export default {
   name: 'SignIn',
@@ -63,6 +64,7 @@ export default {
       localStorage.setItem('signedIn', response.data.logged_in)
       localStorage.setItem('userId', response.data['session'].user_id)
       this.error = ''
+      bus.$emit('refresh', 1)
       this.$router.replace('/')
     },
     signinFailed (error) {

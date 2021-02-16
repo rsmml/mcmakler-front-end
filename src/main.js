@@ -36,6 +36,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 //  Vue Axios
 Vue.use(VueAxios, axios)
 
+// Bus
+export const bus = new Vue()
+
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.config.productionTip = false

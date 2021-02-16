@@ -5,28 +5,30 @@
         <!-- LEFT -->
         <h1>McMackler</h1>
         <!-- CENTER -->
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
           <ul class="navbar-nav">
-            <router-link to="/appartments" class="nav-link">
-              <li class="nav-item">
-                <p class="mb-0">Appartments</p>
-              </li>
-            </router-link>
-            <router-link to="/" class="nav-link">
-              <li class="nav-item">
-                <p class="mb-0">What's New</p>
-              </li>
-            </router-link>
-            <router-link to="/" class="nav-link">
-              <li class="nav-item">Premium Appartments</li>
-            </router-link>
-            <router-link to="/" class="nav-link">
-              <li class="nav-item d-flex justify-content-between align-items-center" style="color: #5bb4e0;">
-                <p class="mb-0 mr-1">On Sale</p>
-              </li>
-            </router-link>
+            <div class="d-flex align-items-center">
+              <router-link to="/appartments" class="nav-link">
+                <li class="nav-item">
+                  <p class="mb-0">Appartments</p>
+                </li>
+              </router-link>
+              <router-link to="/" class="nav-link">
+                <li class="nav-item">
+                  <p class="mb-0">What's New</p>
+                </li>
+              </router-link>
+              <router-link to="/" class="nav-link">
+                <li class="nav-item">Premium Appartments</li>
+              </router-link>
+              <router-link to="/" class="nav-link">
+                <li class="nav-item d-flex justify-content-between align-items-center" style="color: #5bb4e0;">
+                  <p class="mb-0 mr-1">On Sale</p>
+                </li>
+              </router-link>
+            </div>
             <router-link to="/newappartment" class="nav-link" v-if="loggedIn()">
-              <li class="nav-item">Add Appartment</li>
+              <li class="nav-item btn-yellow">Add Appartment</li>
             </router-link>
           </ul>
         </div>
@@ -43,6 +45,7 @@
 
 <script>
 import axios from 'axios'
+import { bus } from '../main'
 
 export default {
   name: 'Navbar',
@@ -63,10 +66,19 @@ export default {
       delete localStorage.sessionId
       delete localStorage.signedIn
       delete localStorage.userId
+      bus.$emit('refresh', 1)
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+.btn-yellow {
+  background-color: #ffe300;
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+h1 {
+  font-weight: 700;
+}
 </style>
