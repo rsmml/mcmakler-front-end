@@ -1,12 +1,12 @@
 <template>
-  <div id="appartments">
-    List of appartments
+  <div id="my-apartments">
+    My Apartments
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Appartments'
+  name: 'MyApartments'
 }
 </script>
 

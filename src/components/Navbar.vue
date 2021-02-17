@@ -6,9 +6,9 @@
         <h1>McMackler</h1>
         <!-- CENTER -->
         <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
-          <ul class="navbar-nav">
+          <ul class="navbar-nav align-items-center">
             <div class="d-flex align-items-center">
-              <router-link to="/appartments" class="nav-link">
+              <router-link to="/apartments" class="nav-link">
                 <li class="nav-item">
                   <p class="mb-0">Appartments</p>
                 </li>
@@ -21,17 +21,14 @@
               <router-link to="/" class="nav-link">
                 <li class="nav-item">Premium Appartments</li>
               </router-link>
-              <router-link to="/" class="nav-link">
-                <li class="nav-item d-flex justify-content-between align-items-center" style="color: #5bb4e0;">
-                  <p class="mb-0 mr-1">On Sale</p>
-                </li>
+              <router-link to="/myappartments" class="nav-link" v-if="loggedIn()">
+                <li class="nav-item">My Properties</li>
               </router-link>
             </div>
-
             <li><router-link  active-class="active"
               :to="{ name: 'Add' }"
               v-if="loggedIn()">
-              <a href="#" class="nav-link">Add Apartment</a>
+              <a href="#" class="nav-link btn-yellow">Add Property</a>
             </router-link></li>
 
             <!-- <router-link :to="{ name: 'add' }" class="nav-link" v-if="loggedIn()">
@@ -85,6 +82,10 @@ export default {
   background-color: #ffe300;
   padding: 4px 12px;
   border-radius: 4px;
+}
+a:hover {
+  text-decoration: none;
+  color: #39393a;
 }
 h1 {
   font-weight: 700;

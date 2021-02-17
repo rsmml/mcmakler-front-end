@@ -4,7 +4,8 @@ import Home from '@/components/Home'
 import Add from '@/components/Add'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
-import Appartments from '@/components/Appartments'
+import Apartments from '@/components/Apartments'
+import MyApartments from '@/components/MyApartments'
 
 Vue.use(Router)
 
@@ -34,6 +35,17 @@ export default new Router({
       }
     },
     {
+      path: '/myappartments',
+      name: 'MyApartments',
+      get component () {
+        if (localStorage.signedIn) {
+          return MyApartments
+        } else {
+          return SignIn
+        }
+      }
+    },
+    {
       path: '/signin',
       name: 'SignIn',
       component: SignIn
@@ -44,9 +56,9 @@ export default new Router({
       component: SignUp
     },
     {
-      path: '/appartments',
-      name: 'Appartments,',
-      component: Appartments
+      path: '/apartments',
+      name: 'Apartments,',
+      component: Apartments
     }
   ]
 })
