@@ -6,12 +6,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFontAwesome, faTwitterSquare, faFacebookSquare, faInstagramSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faSearch, faChevronRight, faBurn, faTimes, faHeart, faStar, faMapMarkerAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import VueSimpleAlert from 'vue-simple-alert'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
 
-// Import Bootstrap an BootstrapVue CSS files (order is important)
+// Bootstrap CSS
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -35,6 +36,9 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 //  Vue Axios
 Vue.use(VueAxios, axios)
+
+// Simple Alert
+Vue.use(VueSimpleAlert)
 
 // Bus
 export const bus = new Vue()

@@ -133,16 +133,15 @@ export default {
         .catch(error => this.error(error))
     },
     created (response) {
-      console.log(response)
       if (response.data.status === 'created') {
-        // this.$alert('Lets do more smart links', 'Smart Link Created!', 'success')
+        this.$alert('Apartment added', 'Thank you!', 'success')
       } else {
-        // this.$alert('We cannot add your smart link at the moment', 'Something went wrong...', 'error')
+        this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
     },
     error (error) {
       if (error) {
-        // this.$alert('We cannot add your smart link at the moment', 'Something went wrong...', 'error')
+        this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
     }
   }
