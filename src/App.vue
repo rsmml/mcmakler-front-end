@@ -18,6 +18,11 @@ export default {
       componentKey: 0
     }
   },
+  create () {
+    bus.$on('refresh', (data) => {
+      this.componentKey += data
+    })
+  },
   updated () {
     bus.$on('refresh', (data) => {
       this.componentKey += data

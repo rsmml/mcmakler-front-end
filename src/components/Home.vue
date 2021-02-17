@@ -6,9 +6,12 @@
       </div>
       <div class="col-12 col-lg-5 banner-info">
         <h1>Find your home today with McMakler </h1>
-        <p class="subtitle">Search homes and keep track of the ones you like. View our exclusive listings.</p>
-        <router-link to="/add" style="font-size: 25px !important">
-          <button class="btn btn-outline-secondary">Add a Property</button>
+        <p class="subtitle mt-5">Search homes and keep track of the ones you like. View our exclusive listings.</p>
+        <p class="subtitle">When you’re ready for a change, we’re ready to help.</p>
+        <router-link  active-class="active"
+          :to="{ name: 'Add'}"
+          @click="refresh()">
+          <button class="btn btn-outline-secondary" @click="refresh()">Add a Property</button>
         </router-link>
       </div>
     </div>
@@ -43,8 +46,15 @@
 </template>
 
 <script>
+import { bus } from '../main'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  methods: {
+    refresh () {
+      bus.$emit('refresh', 1)
+    }
+  }
 }
 </script>
 
@@ -62,7 +72,6 @@ h1 {
   padding: 36px 52px;
 }
 p.subtitle {
-  margin-top: 40px;
   font-size: 24px;
   width: 150%;
   text-align: initial;
@@ -105,6 +114,15 @@ input[type=search]:focus {
 }
 .simple-card:hover {
   background-color: #ffe300;
+  transform: scale(1.1);
+}
+.btn-outline-secondary {
+  padding: 12px 56px;
+}
+.btn-outline-secondary:hover {
+  background-color: #ffe300;
+  color: #2c3e52;
+  border-color: #ffe300;
 }
 
 @media (max-width: 767px){

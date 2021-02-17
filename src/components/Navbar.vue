@@ -29,7 +29,7 @@
             </div>
 
             <li><router-link  active-class="active"
-              :to="{ name: 'add' }"
+              :to="{ name: 'Add' }"
               v-if="loggedIn()">
               <a href="#" class="nav-link">Add Apartment</a>
             </router-link></li>
@@ -74,6 +74,7 @@ export default {
       delete localStorage.signedIn
       delete localStorage.userId
       bus.$emit('refresh', 1)
+      window.location.href = 'Home'
     }
   }
 }
