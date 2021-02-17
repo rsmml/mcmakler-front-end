@@ -17,11 +17,8 @@
     </div>
     <div class="d-flex justify-content-center search-100">
       <div class="input-group rounded">
-        <input type="search" class="form-control rounded border-0" placeholder="Search by city" aria-label="Search"
+        <input type="search" class="form-control rounded border-0" placeholder="Search a Property" aria-label="Search"
           aria-describedby="search-addon" />
-        <span class="input-group-text border-0" id="search-addon">
-          <font-awesome-icon icon="search" />
-        </span>
       </div>
     </div>
     <div class="row container m-5 align-items-start">
@@ -94,10 +91,22 @@ img.png{
   width: 70%;
 }
 input[type=search] {
-  background-color: #f6f6f6;
+  background-color: #004b56;
   border: none;
-  color: #0d0d0d;
+  color: white;
   height: 60px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
 }
 p.card-title {
   font-size: 20px;
