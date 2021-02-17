@@ -121,7 +121,7 @@ export default {
         size: this.size,
         construction_year: this.year,
         rooms: this.rooms,
-        rent_price: this.price,
+        price: this.price,
         property_type: this.type,
         state_property: this.state,
         market: this.market,
