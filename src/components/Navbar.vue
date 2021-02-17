@@ -74,7 +74,7 @@ export default {
       delete localStorage.signedIn
       delete localStorage.userId
       bus.$emit('refresh', 1)
-      window.location.href = 'Home'
+      window.location.href = 'home'
     }
   }
 }

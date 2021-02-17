@@ -65,7 +65,7 @@ export default {
       localStorage.setItem('userId', response.data['session'].user_id)
       this.error = ''
       bus.$emit('refresh', 1)
-      window.location.href = 'Home'
+      window.location.href = 'home'
     },
     signinFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || ''
