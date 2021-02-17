@@ -114,6 +114,36 @@ export default {
   methods: {
     signedIn () {
       return localStorage.signedIn
+    },
+    addApartment () {
+      axios.post('http://localhost:3000/api/v1/properties', {
+        address: this.address,
+        size: this.size,
+        construction_year: this.year,
+        rooms: this.rooms,
+        rent_price: this.price,
+        property_type: this.type,
+        state_property: this.state,
+        market: this.market,
+        user_id: localStorage.userId
+      },
+      { withCredentials: true }
+      )
+        .then(response => this.created(response))
+        .catch(error => this.error(error))
+    },
+    created (response) {
+      console.log(response)
+      if (response.data.status === 'created') {
+        // this.$alert('Lets do more smart links', 'Smart Link Created!', 'success')
+      } else {
+        // this.$alert('We cannot add your smart link at the moment', 'Something went wrong...', 'error')
+      }
+    },
+    error (error) {
+      if (error) {
+        // this.$alert('We cannot add your smart link at the moment', 'Something went wrong...', 'error')
+      }
     }
   }
 }
