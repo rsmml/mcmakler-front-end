@@ -7,6 +7,7 @@ import { faFontAwesome, faTwitterSquare, faFacebookSquare, faInstagramSquare, fa
 import { faSearch, faChevronRight, faBurn, faTimes, faHeart, faStar, faMapMarkerAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueSimpleAlert from 'vue-simple-alert'
+import firebase from 'firebase'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App'
@@ -33,6 +34,18 @@ library.add(
   faShoppingBag
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+// Firebase
+var firebaseConfig = {
+  apiKey: 'AIzaSyCpcFAjr6rd9Haff08Fqb1GAeoNqH5tRuA',
+  authDomain: 'mcmakler-1d110.firebaseapp.com',
+  projectId: 'mcmakler-1d110',
+  storageBucket: 'mcmakler-1d110.appspot.com',
+  messagingSenderId: '255497323205',
+  appId: '1:255497323205:web:7084c1e4616770815366ac'
+}
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
 
 //  Vue Axios
 Vue.use(VueAxios, axios)
