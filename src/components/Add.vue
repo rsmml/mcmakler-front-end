@@ -41,11 +41,10 @@
             <div class="col-12 col-lg-6 w-50 p-3 grey-background">
               <div class="text-left">
                 <h3>Price your property 💰 </h3>
-                <p>Please give us a <strong>price</strong>, and we will come back to you:</p>
               </div>
               <div class="text-left mt-3">
-                <p class="mt-5">What do you want to do with your apartment?*</p>
-                <div class="d-flex">
+                <p>What do you want to do with your apartment?*</p>
+                <div class="d-flex mt-1">
                   <div class="form-check mr-5">
                     <input v-model="market" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="sell" checked>
                     <label class="form-check-label" for="gridRadios1">
@@ -60,24 +59,32 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="text" class="my-3">Price in <strong>EUR</strong>*</label>
+                  <label for="text" class="mt-1">Price in <strong>EUR</strong>*</label>
                   <input v-model="price" class="form-control" id="name" aria-describedby="emailHelp" placeholder="680.000">
                 </div>
                 <div class="form-group">
-                  <label for="text" class="my-3">Property Type* (select a type)</label>
-                  <select v-model="type" class="form-control" id="exampleFormControlSelect1">
-                    <option>Apartmet</option>
+                  <label for="text" class="mt-1">Property Type* (select a type)</label>
+                  <select v-model="type" class="custom-select my-1 mr-sm-2" id="exampleFormControlSelect1">
+                    <option selected>Apartmet</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="text" class="my-3">Property State* (select a type)</label>
-                  <select v-model="state" class="form-control" id="exampleFormControlSelect1">
-                    <option>Premium</option>
+                  <label for="text" class="my-1 mr-2">Property State* (select a type)</label>
+                  <select v-model="state" class="custom-select my-1 mr-sm-2" id="exampleFormControlSelect1">
+                    <option selected>Premium</option>
                     <option>Normal</option>
                     <option>Simple</option>
                   </select>
                 </div>
               </div>
+              <!-- Image Uploader -->
+              <form>
+                <h4 class="text-left">Upload images</h4>
+                <div class="custom-file">
+                  <input type="file" multiple="multiple" class="custom-file-input" id="customFile" @change="onFileSelected">
+                  <label class="custom-file-label text-left" for="customFile">Choose file</label>
+                </div>
+              </form>
             </div>
           </div>
         </form>
@@ -108,7 +115,8 @@ export default {
       price: '',
       type: '',
       state: '',
-      market: ''
+      market: '',
+      photo: null
     }
   },
   methods: {
@@ -116,6 +124,9 @@ export default {
       return localStorage.signedIn
     },
     addApartment () {
+      const fd = new FormData()
+      fd.append('image', this.photo, this.photo.name)
+
       axios.post('http://localhost:3000/api/v1/properties', {
         address: this.address,
         size: this.size,
@@ -135,6 +146,7 @@ export default {
     created (response) {
       if (response.data.status === 'created') {
         this.$alert('Apartment added', 'Thank you!', 'success')
+        console.log(response)
       } else {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
@@ -143,6 +155,9 @@ export default {
       if (error) {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
+    },
+    onFileSelected (event) {
+      this.photo = event.target.files[0]
     }
   }
 }
@@ -185,5 +200,34 @@ hr {
   .vertical-banner {
     display: none;
   }
+}
+
+.dropbox {
+  outline: 2px dashed grey; /* the dash box */
+  outline-offset: -10px;
+  background: #ffe400;
+  color: dimgray;
+  padding: 10px 10px;
+  min-height: 200px; /* minimum height */
+  position: relative;
+  cursor: pointer;
+}
+
+.input-file {
+  opacity: 0; /* invisible but it's there! */
+  width: 100%;
+  height: 200px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.dropbox:hover {
+  background: #d5bf05; /* when mouse over to the drop zone, change color */
+}
+
+.dropbox p {
+  font-size: 1.2em;
+  text-align: center;
+  padding: 50px 0;
 }
 </style>

@@ -7,6 +7,7 @@ import { faFontAwesome, faTwitterSquare, faFacebookSquare, faInstagramSquare, fa
 import { faSearch, faChevronRight, faBurn, faTimes, faHeart, faStar, faMapMarkerAlt, faShoppingBag } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import VueSimpleAlert from 'vue-simple-alert'
+import firebase from 'firebase'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App'
@@ -34,6 +35,17 @@ library.add(
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
+// Firebase
+var firebaseConfig = {
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGE_IN_SENDER_ID,
+  appId: process.env.APP_ID
+}
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig)
 //  Vue Axios
 Vue.use(VueAxios, axios)
 
