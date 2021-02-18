@@ -79,11 +79,24 @@
               </div>
               <!-- Image Uploader -->
               <form>
-                <h4 class="text-left">Upload images</h4>
-                <div class="custom-file">
-                  <input type="file" multiple="multiple" class="custom-file-input" id="customFile" @change="onFileSelected">
-                  <label class="custom-file-label text-left" for="customFile">Choose file</label>
+                <h4 class="text-left">Upload images 📸</h4>
+                <div class="d-flex input-group">
+                  <div class="custom-file">
+                    <input type="file" @change="previewImage" accept="image/*" class="custom-file-input" id="inputGroupFile04">
+                    <label class="custom-file-label text-left" for="inputGroupFile04">{{ imageData ? imageData.name : "Choose File" }}</label>
+                  </div>
+                  <div class="input-group-append">
+                    <button  @click.prevent="onUpload" type="submit" class="btn btn-outline-secondary">Upload</button>
+                  </div>
                 </div>
+                <div class="d-flex">
+                <p v-if="uploading">Progress:
+                  <progress :value="uploadValue" max="100"></progress>
+                  {{uploadValue.toFixed() + "%"}}
+                </p>
+                <p v-if="uploadValue === 100"> 🎉</p>
+                </div>
+                <img class="preview mt-2" :src="picture" alt="">
               </form>
             </div>
           </div>
@@ -100,6 +113,7 @@
 
 <script>
 import axios from 'axios'
+import firebase from 'firebase'
 
 export default {
   name: 'Add',
@@ -116,7 +130,10 @@ export default {
       type: '',
       state: '',
       market: '',
-      photo: null
+      imageData: null,
+      picture: null,
+      uploadValue: 0,
+      uploading: false
     }
   },
   methods: {
@@ -124,9 +141,6 @@ export default {
       return localStorage.signedIn
     },
     addApartment () {
-      const fd = new FormData()
-      fd.append('image', this.photo, this.photo.name)
-
       axios.post('http://localhost:3000/api/v1/properties', {
         address: this.address,
         size: this.size,
@@ -146,7 +160,6 @@ export default {
     created (response) {
       if (response.data.status === 'created') {
         this.$alert('Apartment added', 'Thank you!', 'success')
-        console.log(response)
       } else {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
@@ -156,8 +169,25 @@ export default {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
       }
     },
-    onFileSelected (event) {
-      this.photo = event.target.files[0]
+    previewImage (event) {
+      this.uploadValue = 0
+      this.picture = null
+      this.imageData = event.target.files[0]
+    },
+    onUpload () {
+      this.uploading = true
+      this.picture = null
+      const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData)
+      storageRef.on(`state_changed`, snapshot => {
+        this.uploadValue = (snapshot.butesTransferred / snapshot.totalBytes) * 100
+      }, error => { console.log(error.message) },
+      () => {
+        this.uploadValue = 100
+        storageRef.snapshot.ref.getDownloadURL().then((url) => {
+          this.picture = url
+        })
+      }
+      )
     }
   }
 }
@@ -229,5 +259,9 @@ hr {
   font-size: 1.2em;
   text-align: center;
   padding: 50px 0;
+}
+
+img.preview{
+  width: 100px;
 }
 </style>

@@ -37,15 +37,16 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 // Firebase
 var firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGE_IN_SENDER_ID,
-  appId: process.env.APP_ID
+  apiKey: 'AIzaSyCpcFAjr6rd9Haff08Fqb1GAeoNqH5tRuA',
+  authDomain: 'mcmakler-1d110.firebaseapp.com',
+  projectId: 'mcmakler-1d110',
+  storageBucket: 'mcmakler-1d110.appspot.com',
+  messagingSenderId: '255497323205',
+  appId: '1:255497323205:web:7084c1e4616770815366ac'
 }
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig)
+
 //  Vue Axios
 Vue.use(VueAxios, axios)
 
