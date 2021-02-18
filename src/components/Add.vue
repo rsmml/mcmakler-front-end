@@ -82,7 +82,7 @@
                 <h4 class="text-left">Upload images 📸</h4>
                 <div class="d-flex input-group">
                   <div class="custom-file">
-                    <input type="file" @change="previewImage" accept="image/*" class="custom-file-input" id="inputGroupFile04">
+                    <input type="file" ref="inputFile" @change="previewImage" accept="image/*" class="custom-file-input" id="inputGroupFile04">
                     <label class="custom-file-label text-left" for="inputGroupFile04">{{ imageData ? imageData.name : "Choose File" }}</label>
                   </div>
                   <div class="input-group-append">
@@ -177,6 +177,7 @@ export default {
     onUpload () {
       this.uploading = true
       this.picture = null
+
       const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData)
       storageRef.on(`state_changed`, snapshot => {
         this.uploadValue = (snapshot.butesTransferred / snapshot.totalBytes) * 100
