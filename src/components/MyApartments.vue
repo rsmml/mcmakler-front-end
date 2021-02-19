@@ -18,7 +18,7 @@
             <div class="text-right">
               <p class="market-text text-center">{{ property.market}}</p>
               <h2>EUR</h2>
-              <h2 class="card-trip-pricing">{{ property.market === 'Rent' ? property.price : property.price * 100 }}</h2>
+              <h2 class="card-trip-pricing">{{ property.market.toLowerCase() === 'rent' ? property.price : property.price * 100 }}</h2>
             </div>
           </div>
         </div>
