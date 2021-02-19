@@ -68,6 +68,7 @@ export default {
       window.location.href = 'home'
     },
     signinFailed (error) {
+      this.$alert('Something went wrong', 'Oops', 'error')
       this.error = (error.response && error.response.data && error.response.data.error) || ''
       delete localStorage.sessionId
       delete localStorage.signedIn

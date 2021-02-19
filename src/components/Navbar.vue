@@ -3,7 +3,9 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light flex-column">
       <div class="w-100 d-flex justify-content-center mt-2">
         <!-- LEFT -->
-        <h1>McMackler</h1>
+        <router-link to="/">
+          <h1 style="color: #2c3e52">McMackler</h1>
+        </router-link>
         <!-- CENTER -->
         <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
           <ul class="navbar-nav align-items-center">
