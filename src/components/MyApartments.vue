@@ -33,6 +33,7 @@
           footer-class="modal-footer-property"
           >
           <div class="card-trip card-trip-modal" style="box-shadow: none">
+            <h1 class="delete-btn" @click.prevent="deleteProperty(property)">+</h1>
             <img :src="getPhotoId(property.photo_id)" />
             <div class="card-trip-infos text-left">
               <div>

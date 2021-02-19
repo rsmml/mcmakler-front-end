@@ -14,29 +14,54 @@
     </div>
 
     <ul id="list-properties" class="mt-2">
-      <li v-for="property in properties" :key="property.id" class="m-3">
-        <!-- Property Card -->
-        <div class="card-trip">
-          <h1 v-if="userId(property)" class="delete-btn" @click.prevent="deleteProperty(property)">+</h1>
-          <img :src="getPhotoId(property.photo_id)" />
-          <div class="card-trip-infos text-left">
-            <div>
-              <h2>{{ property.address }}</h2>
-              <p>Size: {{ property.size}}m2</p>
-              <p>Rooms: {{ property.rooms}}</p>
-              <p>Construction year: {{ property.construction_year}}</p>
-              <p>Type: {{ property.property_type}}</p>
-              <p>State: {{ property.state_property}}</p>
-            </div>
-            <div class="text-right">
-              <p class="market-text text-center">{{ property.market}}</p>
-              <h2>EUR</h2>
-              <h2 class="card-trip-pricing">{{ property.market === 'Rent' ? property.price : property.price * 100 }}</h2>
+      <div v-if="search === null || search === '' ">
+        <li v-for="property in properties" :key="property.id" class="m-3">
+          <!-- Property Card -->
+          <div class="card-trip">
+            <h1 v-if="userId(property)" class="delete-btn" @click.prevent="deleteProperty(property)">+</h1>
+            <img :src="getPhotoId(property.photo_id)" />
+            <div class="card-trip-infos text-left">
+              <div>
+                <h2>{{ property.address }}</h2>
+                <p>Size: {{ property.size}}m2</p>
+                <p>Rooms: {{ property.rooms}}</p>
+                <p>Construction year: {{ property.construction_year}}</p>
+                <p>Type: {{ property.property_type}}</p>
+                <p>State: {{ property.state_property}}</p>
+              </div>
+              <div class="text-right">
+                <p class="market-text text-center">{{ property.market}}</p>
+                <h2>EUR</h2>
+                <h2 class="card-trip-pricing">{{ property.market === 'Rent' ? property.price : property.price * 100 }}</h2>
+              </div>
             </div>
           </div>
-        </div>
-
-      </li>
+        </li>
+      </div>
+      <div v-else>
+        <li v-for="property in filterProperties" :key="property.id" class="m-3">
+          <!-- Property Card -->
+          <div class="card-trip">
+            <h1 v-if="userId(property)" class="delete-btn" @click.prevent="deleteProperty(property)">+</h1>
+            <img :src="getPhotoId(property.photo_id)" />
+            <div class="card-trip-infos text-left">
+              <div>
+                <h2>{{ property.address }}</h2>
+                <p>Size: {{ property.size}}m2</p>
+                <p>Rooms: {{ property.rooms}}</p>
+                <p>Construction year: {{ property.construction_year}}</p>
+                <p>Type: {{ property.property_type}}</p>
+                <p>State: {{ property.state_property}}</p>
+              </div>
+              <div class="text-right">
+                <p class="market-text text-center">{{ property.market}}</p>
+                <h2>EUR</h2>
+                <h2 class="card-trip-pricing">{{ property.market === 'Rent' ? property.price : property.price * 100 }}</h2>
+              </div>
+            </div>
+          </div>
+        </li>
+      </div>
     </ul>
   </div>
 </template>
@@ -69,7 +94,6 @@ export default {
       return require('../assets/Properties/' + id + '.jpg')
     },
     userId (property) {
-      console.log(this.user_id)
       if (property.user_id === this.user_id) {
         console.log('yes')
       } else {
