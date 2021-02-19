@@ -9,10 +9,10 @@
       </div>
       <div class="col-12 col-lg-9">
         <!-- Form -->
-        <form class="container pt-5">
+        <form class="container py-3">
           <div class="row">
             <!-- Left Column -->
-            <div class="col-12 col-lg-6 w-50 p-3 text-left">
+            <div class="col-12 col-lg-12 px-3 text-left" v-bind:class="{ active: !isActive }">
               <div class="pl-3">
                 <h3>Time to list some <strong>Apartments</strong> 🎉</h3>
                 <p>In order to update an <strong>apartment</strong> please provide us with some information:</p>
@@ -36,9 +36,13 @@
                 <label for="text" class="my-3">Rooms*</label>
                 <input v-model="rooms" class="form-control" id="name" aria-describedby="emailHelp" placeholder="4">
               </div>
+              <!-- NEXT -->
+              <div class="mb-5">
+                <button  @click.prevent="nextColumn" type="submit" class="btn btn-dark w-100 mt-5">Next Step</button>
+              </div>
             </div>
             <!-- Right Column -->
-            <div class="col-12 col-lg-6 w-50 p-3 grey-background">
+            <div class="col-12 col-lg-12 grey-background" v-bind:class="{ active: isActive }">
               <div class="text-left">
                 <h3>Price your property 💰 </h3>
               </div>
@@ -98,13 +102,13 @@
                 </div>
                 <img class="preview mt-2" :src="picture" alt="">
               </form>
+              <!-- SUBMIT -->
+              <div class="mb-5">
+                <button  @click.prevent="addApartment" type="submit" class="btn btn-dark w-100 mt-5">Upload Apartment</button>
+              </div>
             </div>
           </div>
         </form>
-        <!-- Button -->
-        <div class="mb-5">
-          <button  @click.prevent="addApartment" type="submit" class="btn btn-dark w-100 mt-5">Upload Apartment</button>
-        </div>
 
       </div>
     </div>
@@ -133,7 +137,8 @@ export default {
       imageData: null,
       picture: null,
       uploadValue: 0,
-      uploading: false
+      uploading: false,
+      isActive: true
     }
   },
   methods: {
@@ -160,13 +165,16 @@ export default {
     created (response) {
       if (response.data.status === 'created') {
         this.$alert('Apartment added', 'Thank you!', 'success')
+        this.isActive = true
       } else {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
+        this.isActive = true
       }
     },
     error (error) {
       if (error) {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
+        this.isActive = true
       }
     },
     previewImage (event) {
@@ -189,6 +197,9 @@ export default {
         })
       }
       )
+    },
+    nextColumn () {
+      this.isActive = false
     }
   }
 }
@@ -254,6 +265,10 @@ hr {
 
 .dropbox:hover {
   background: #d5bf05; /* when mouse over to the drop zone, change color */
+}
+
+.active {
+  display: none;
 }
 
 .dropbox p {
