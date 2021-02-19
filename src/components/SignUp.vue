@@ -69,7 +69,7 @@ export default {
       localStorage.setItem('userId', response.data['session'].user_id)
       this.error = ''
       bus.$emit('refresh', 1)
-      this.$router.replace('/')
+      window.location.href = 'home'
     },
     signupFailed (error) {
       this.$alert('Something went wrong', 'Oops', 'error')
