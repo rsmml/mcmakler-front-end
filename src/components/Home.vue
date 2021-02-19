@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="home" class="my-3">
     <div class="row container banner">
       <div class="d-none d-sm-block col-lg-7 banner-image">
         <img src="../assets/banner.jpg">
@@ -45,6 +45,7 @@
         <h2>on our <strong>premium</strong> list</h2>
       </div>
     </div>
+    <!-- SEAR RESULTS -->
     <div v-if="searching" class="smooth-search">
       <div v-if="search === null" class="d-none d-sm-block img-search m-3">
         <img src="../assets/search-01.png" alt="">
@@ -252,6 +253,7 @@ input[type=text]:focus {
     width: 100%;
   }
 }
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -291,6 +293,12 @@ ul {
     -moz-column-count: 2; /* For FireFox */
     -webkit-column-count: 2; /* For Safari/Chrome */
     column-count: 3; /* For when the standard gets fully supported */
+  }
+}
+@media (min-width: 1400px) {
+  #home {
+    width: 1400px;
+    margin: auto
   }
 }
 .delete-btn {

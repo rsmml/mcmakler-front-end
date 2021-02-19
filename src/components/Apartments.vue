@@ -1,7 +1,20 @@
 <template>
-  <div id="apartments">
-    <ul id="list-properties">
-      <li v-for="property in properties" :key="property.id">
+  <div id="apartments" class="mb-5">
+    <!-- SEARCH -->
+    <div id="search" class="d-flex justify-content-center search-100">
+      <select v-model="searchType" @change="queryType" class="m-3 custom-select search-type" id="exampleFormControlSelect1">
+        <option selected>Market</option>
+        <option >Address</option>
+        <option >State</option>
+      </select>
+      <div class="input-group rounded">
+        <input @focus="searchActive" @blur="searchNoActive" type="text" v-model="search" class="form-control rounded border-0 m-3" placeholder="Berlin - Premium - Sell" aria-label="Search"
+          aria-describedby="search-addon" />
+      </div>
+    </div>
+
+    <ul id="list-properties" class="mt-2">
+      <li v-for="property in properties" :key="property.id" class="m-3">
         <!-- Property Card -->
         <div class="card-trip">
           <h1 v-if="userId(property)" class="delete-btn" @click.prevent="deleteProperty(property)">+</h1>
@@ -36,7 +49,12 @@ export default {
   data () {
     return {
       properties: null,
-      user_id: localStorage.userId
+      user_id: localStorage.userId,
+      search: null,
+      searchType: null,
+      searching: false,
+      notFound: false,
+      query: null
     }
   },
   created () {
@@ -50,15 +68,6 @@ export default {
     getPhotoId (id) {
       return require('../assets/Properties/' + id + '.jpg')
     },
-    deleteProperty (property) {
-      this.$confirm('You are about to delete this property', 'Are you sure?', 'question', 'reverse-button').then(() => {
-        axios.delete(`http://localhost:3000/api/v1/properties/${property.id}`)
-          .then(response => {
-            this.properties.splice(this.properties.indexOf(property), 1)
-          })
-          .catch(error => error)
-      })
-    },
     userId (property) {
       console.log(this.user_id)
       if (property.user_id === this.user_id) {
@@ -66,6 +75,32 @@ export default {
       } else {
         return false
       }
+    },
+    searchActive () {
+      this.searching = true
+    },
+    searchNoActive () {
+      if (!this.search) {
+        this.searching = false
+      }
+    },
+    queryType () {
+      if (this.searchType === 'State') {
+        this.query = 'state_property'
+      } else if (this.searchType === 'Address') {
+        this.query = 'address'
+      } else if (this.searchType === 'Market') {
+        this.query = 'market'
+      }
+    }
+  },
+  computed: {
+    filterProperties () {
+      return this.properties.filter((property) => {
+        if (property[this.query].match(this.search)) {
+          return property[this.query].match(this.search)
+        }
+      })
     }
   }
 }
@@ -106,25 +141,43 @@ ul {
   column-gap: 5px;
   padding: 5px;
 }
+
 @media (min-width: 767px){
   ul {
     -moz-column-count: 2; /* For FireFox */
     -webkit-column-count: 2; /* For Safari/Chrome */
-    column-count: 3; /* For when the standard gets fully supported */
+    column-count: 2; /* For when the standard gets fully supported */
+    width: 100%;
+    margin: auto;
+  }
+  .search-100 {
+    width: 100%;
+    margin: auto;
   }
 }
-.delete-btn {
-  rotate: 45deg;
-  position: absolute;
-  top: auto;
-  left: unset;
-  color: black;
-  -webkit-text-stroke: 1px white;
-  background-color: rgba(0,0,0,0.2);
-  border-radius: 50%;
-  padding: 0px 13px 4px 13px;
-  margin: 0;
-  cursor: pointer;
+
+@media (min-width: 1000px) {
+  ul {
+    width: 90%;
+    margin: auto;
+    column-count: 3;
+  }
+  .search-100 {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media (min-width: 1480px) {
+  ul{
+    width: 1400px;
+    margin: auto;
+    column-count: 3;
+  }
+  .search-100 {
+    width: 1400px;
+    margin: auto;
+  }
 }
 
 p.market-text{
@@ -151,5 +204,29 @@ p.market-text{
   right: 16px;
   top: -20px;
   width: 40px;
+}
+input[type=text] {
+  background-color: #004b56;
+  border: none;
+  color: white;
+  height: 60px;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: white;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: white;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: white;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: white;
+}
+input[type=text]:focus {
+  -webkit-box-shadow: unset;
+}
+.search-type {
+  height: 60px;
 }
 </style>
