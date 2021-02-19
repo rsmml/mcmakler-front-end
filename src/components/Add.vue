@@ -166,6 +166,14 @@ export default {
       if (response.data.status === 'created') {
         this.$alert('Apartment added', 'Thank you!', 'success')
         this.isActive = true
+        this.address = ''
+        this.size = ''
+        this.year = ''
+        this.rooms = ''
+        this.price = ''
+        this.type = ''
+        this.state = ''
+        this.market = ''
       } else {
         this.$alert('We cannot add your apartment at the moment', 'Something went wrong...', 'error')
         this.isActive = true
