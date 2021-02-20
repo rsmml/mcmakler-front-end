@@ -31,7 +31,7 @@ library.add(
   faInstagramSquare,
   faLinkedin,
   faMapMarkerAlt,
-  faShoppingBag
+  faShoppingBag,
 )
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 

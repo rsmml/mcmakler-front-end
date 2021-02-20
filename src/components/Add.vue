@@ -25,7 +25,7 @@
                 <!-- <small class="text-success">Please provide a name</small> -->
               </div>
               <div class="form-group">
-                <label for="text" class="my-3">Size*</label>
+                <label for="text" class="my-3">Size* /m²</label>
                 <input v-model="size" class="form-control" id="name" aria-describedby="emailHelp" placeholder="110 m²">
               </div>
               <div class="form-group">
