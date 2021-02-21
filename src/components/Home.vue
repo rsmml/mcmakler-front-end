@@ -29,7 +29,7 @@
 
     <!-- SEAR RESULTS -->
     <div v-if="searching" class="smooth-search">
-      <div v-if="search === null" class="d-none d-sm-block img-search m-3">
+      <div v-if="search === null" class="img-search m-3">
         <img src="../assets/search-01.png" alt="">
       </div>
       <div v-if="search != null" class="img-search m-3">
