@@ -181,7 +181,6 @@ export default {
               this.properties.push(property)
             }
           })
-          console.log(this.properties)
         }
       })
       .catch(error => console.log(error))
