@@ -158,7 +158,7 @@ export default {
       columTwo: true,
       columThree: true,
       columFour: true,
-      properties: null,
+      properties: [],
       editedProperty: '',
       newAddress: '',
       newSize: '',
@@ -171,9 +171,18 @@ export default {
     }
   },
   created () {
-    axios.get('http://localhost:3000/api/v1/my_properties', { withCredentials: true })
+    axios.get('http://localhost:3000/api/v1/properties', { withCredentials: true })
       .then(response => {
-        this.properties = response.data['properties']
+        if (response) {
+          const myProperties = response.data['properties']
+          const integer = parseInt(localStorage.userId, 10)
+          myProperties.forEach((property) => {
+            if (property.user_id === integer) {
+              this.properties.push(property)
+            }
+          })
+          console.log(this.properties)
+        }
       })
       .catch(error => console.log(error))
   },

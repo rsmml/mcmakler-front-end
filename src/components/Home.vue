@@ -248,8 +248,14 @@ input[type=text]:focus {
   }
   #search {
     flex-direction: column;
+    width: 90%;
+    margin: auto;
   }
   #exampleFormControlSelect1{
+    width: 100%;
+    margin-bottom: 12px;
+  }
+  p.subtitle {
     width: 100%;
   }
 }
