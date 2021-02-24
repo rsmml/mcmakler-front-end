@@ -91,7 +91,7 @@
                   <div class="form-group">
                     <label for="text" class="">Type*</label>
                     <select v-model="newPropertyType" class="custom-select my-1 mr-sm-2" id="exampleFormControlSelect1">
-                      <option selected>Apartmet</option>
+                      <option selected>Apartment</option>
                     </select>
                   </div>
                   <div class="form-group">
